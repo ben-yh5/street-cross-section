@@ -1,3 +1,5 @@
+import { base } from '$app/paths';
+
 const OVERPASS_URL = 'https://overpass-api.de/api/interpreter';
 
 // Bounding box for the pre-fetched cache
@@ -16,7 +18,7 @@ export async function initCache() {
   if (cachedWays !== null) return;
   if (cacheLoading) return cacheLoading;
 
-  cacheLoading = fetch('/roads.json')
+  cacheLoading = fetch(`${base}/roads.json`)
     .then(r => {
       if (!r.ok) throw new Error(`roads.json not found (${r.status})`);
       return r.json();
